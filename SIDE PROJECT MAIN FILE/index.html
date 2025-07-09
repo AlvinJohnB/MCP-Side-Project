@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BookingApp</title>
+  <link rel="stylesheet" href="index.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-3">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold text-primary" href="index.html">BookingApp</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <!-- ms-auto pushes this div to the right -->
+      <div class="ms-auto d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-2">
+        <a href="./cart.html" class="btn btn-outline-primary">Cart</a>
+        <a href="./register.html" class="btn btn-outline-primary">Register</a>
+        <a href="./login.html" class="btn btn-outline-primary">Login</a>
+        <a href="#" id="logoutBtn" class="btn btn-outline-danger d-none">Logout</a>
+        <span id="welcomeUser" class="fw-bold text-dark ms-lg-2 ms-0 mt-lg-0 mt-2"></span>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- HOMEPAGE -->
+<section id="homepage" class="visible">
+  <div class="text-white">
+    <div class="tours-message container">
+      <h1 class="title">Discover places around</h1>
+      <h3 class="subtitle">Find your next favorite spot, one adventure at a time</h3>
+    </div>
+  </div>
+</section>
+
+<section id="booking-tab" class="visible" >
+  <!-- BOOKING TABS -->
+  <div class="container booking-tabs-overlap">
+    <div class="p-4 bg-white rounded shadow">
+      <div class="text-center mb-4">
+        <button class="btn btn-outline-primary me-2 tab-button active" onclick="switchTab('flightTab', this)">Flights</button>
+        <button class="btn btn-outline-primary tab-button" onclick="switchTab('hotelTab', this)">Hotels</button>
+      </div>
+
+      <!-- FLIGHT TAB -->
+      <div id="flightTab" class="tab-content active">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">From</label>
+            <input type="text" class="form-control" placeholder="Enter origin city">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">To</label>
+            <input type="text" class="form-control" placeholder="Enter destination city">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Departure</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Return</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Passengers</label>
+          <select class="form-select">
+            <option>1 Adult</option>
+            <option>2 Adults</option>
+            <option>1 Adult, 1 Child</option>
+          </select>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-primary">Search Flights</button>
+        </div>
+      </div>
+
+      <!-- HOTEL TAB -->
+      <div id="hotelTab" class="tab-content">
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Destination</label>
+            <input type="text" class="form-control" id="destination" placeholder="Enter a destination">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Check-in</label>
+            <input type="date" class="form-control" id="checkin">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Check-out</label>
+            <input type="date" class="form-control" id="checkout">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Guests</label>
+          <select class="form-select" id="guests">
+            <option selected>2 adults, 1 room</option>
+            <option>1 adult, 1 room</option>
+            <option>3 adults, 1 room</option>
+            <option>2 adults, 2 rooms</option>
+          </select>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-primary px-5 py-2">Search Hotels</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- DESTINATIONS -->
+
+    <section id="destinations" class="container-fluid visible">
+    <div class="container py-5">
+      <h2 class="text-center">Our Available Destinations - Your next unforgettable escape!</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="./images/Baguio.jpg" class="card-img-top" alt="Baguio">
+            <div class="card-body">
+              <h3>Baguio</h3>
+              <h4>Summer Capital of the Philippines</h4>
+              <p>Nestled in the Cordillera mountains, Baguio offers a cool climate year-round, a welcome escape from the tropical heat. Pine trees, foggy mornings, and scenic views give the city a romantic, laid-back feel. Known for <em>Burnham Park, Mines View Park, and the Baguio Night Market</em>, it blends natural beauty with vibrant local culture. It’s also home to artists, students, and a growing food scene.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="./images/Boracay.jpg" class="card-img-top" alt="Boracay">
+            <div class="card-body">
+              <h3>Boracay</h3>
+              <h4>White Sands and Island Vibes</h4>
+              <p>Famous for its powdery white sand and crystal-clear waters, <em>Boracay’s White Beach</em> is often ranked among the world’s best. It’s the quintessential tropical paradise—perfect for swimming, partying, sunset sailing, and beach lounging. After a period of rehabilitation, the island now balances tourism with sustainability, offering a cleaner, calmer, and more regulated experience</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="./images/Cebu.jpg" class="card-img-top" alt="Cebu">
+            <div class="card-body">
+              <h3>Cebu</h3>
+              <h4>The Queen City of the South</h4>
+              <p>Cebu is a dynamic mix of history, city life, and natural beauty. It’s where Magellan first set foot, and where you’ll find <em>Magellan’s Cross, Basilica del Santo Niño</em>, and Spanish colonial landmarks. Beyond the city, you’ll discover <em>Kawasan Falls, Osmeña Peak, and world-class diving in Moalboal and Malapascua</em>. Cebu offers something for every kind of traveler—from heritage tours to adventure escapades. </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="./images/Manila.jpeg" class="card-img-top" alt="Manila">
+            <div class="card-body">
+              <h3>Manila</h3>
+              <h4>The Heartbeat of the Nation</h4>
+              <p>The capital and cultural melting pot of the Philippines, Manila is chaotic, colorful, and full of contrasts. Explore the walled city of <em>Intramuros, the historic Rizal Park, and vibrant districts like Binondo, the world’s oldest Chinatown</em>. Manila is the country’s center for politics, commerce, education, and pop culture—constantly evolving, always buzzing.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="./images/Palawan.jpg" class="card-img-top" alt="Palawan">
+            <div class="card-body">
+              <h3>Palawan</h3>
+              <h4>Nature’s Last Frontier</h4>
+              <p>Palawan is postcard-perfect—turquoise waters, towering limestone cliffs, and hidden lagoons. <em>El Nido and Coron</em> are famed for dramatic island-hopping tours and world-class diving. Meanwhile, <em>the Puerto Princesa Underground River is a UNESCO World Heritage Site</em>. Untouched jungles and marine sanctuaries make Palawan a paradise for nature lovers and eco-travelers.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="./images/Siquijor.jpg" class="card-img-top" alt="Siquijor">
+            <div class="card-body">
+              <h3>Siquijor</h3>
+              <h4>The Island of Mystique</h4>
+             <p>Often called the “Island of Fire,” Siquijor is steeped in mysticism, folklore, and natural beauty. It’s known for healing traditions, quiet beaches, waterfalls like <em>Cambugahay Falls</em>, and old Spanish-era churches. Unlike more crowded destinations, Siquijor is serene and soul-soothing, making it ideal for off-the-beaten-path explorers and spiritual seekers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+<!-- FOOTER -->
+<footer class="text-center bg-light py-4">
+  <p class="mb-0">&copy; 2025 BookingApp. All rights reserved.</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Show only the selected section (for register/login or homepage)
+  function showSection(id) {
+    const toggleSections = ['register', 'login', 'homepage'];
+    toggleSections.forEach(secId => {
+      const section = document.getElementById(secId);
+      if (section) section.classList.remove('visible');
+    });
+    if (toggleSections.includes(id)) {
+      const target = document.getElementById(id);
+      if (target) target.classList.add('visible');
+    }
+  }
+
+  // Switch between booking tabs (flight/hotel)
+  function switchTab(tabId, buttonElement) {
+    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+    buttonElement.classList.add('active');
+
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    const selectedTab = document.getElementById(tabId);
+    if (selectedTab) selectedTab.classList.add('active');
+  }
+
+  // Initialization after DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    // Default: show homepage section
+    showSection('homepage');
+
+    // Default: activate first tab button if exists
+    const defaultTabBtn = document.querySelector('.tab-button.active');
+    if (defaultTabBtn) {
+      // Get the tab id from the button's onclick or data attribute, or manually call switchTab
+      // For simplicity, just call switchTab with first tab's id:
+      switchTab('flightTab', defaultTabBtn);
+    }
+  });
+</script>
+</body>
+</html>
