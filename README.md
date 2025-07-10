@@ -26,28 +26,19 @@
 
 - **Purpose**: To develop a prototype Airline Booking web-application that allows users to browse flights, search tour packages, book flights, and make payments.
 - **Scope**: The application will include user registration, product catalog, shopping cart, checkout process, and integration with a payment gateway. It will not include advanced features such as user reviews or order tracking.
-- **Definitions, Acronyms, and Abbreviations**:
-  - **API**: Application Programming Interface
 - **References**: None
 
 ## 4. Overall Description
 
-- **Product Perspective**: The application is a standalone web app for travel agencues to upsell fight promos online.
+- **Product Perspective**: The application is a standalone web app for travel agencies to upsell fight promos online.
 - **Product Functions**:
   - User registration and login
   - Product browsing and search
   - Booking management
   - Checkout process
   - Payment processing
-- **User Classes and Characteristics**:
-  - **End Users**: Customers who will browse and purchase products.
-  - **Admin Users**: Business owners or employees who will manage the catalog and view bookings.
 - **Operating Environment**:
   - **Client**: Modern web browsers (Chrome, Firefox, Safari)
-  - **Server**: Node.js backend, MongoDB database
-- **Assumptions and Dependencies**:
-  - Users have internet access.
-  - Payment gateway API (e.g., Stripe) is available and functional.
 
 ## 5. Visual Mockup Reference
 
@@ -85,52 +76,15 @@
   - **Outputs**: User is logged in
   - **Error Handling**: Show error messages for invalid input
 
-## 8. Non-Functional Requirements
-
-- **Performance**:
-  - The application should load pages within 2 seconds.
-- **Security**:
-  - Passwords should be hashed and stored securely.
-  - All transactions should be encrypted using HTTPS.
-- **Usability**:
-  - The application should be easy to navigate with a clean user interface.
-- **Reliability**:
-  - The application should have 99.9% uptime.
-- **Supportability**:
-  - The code should be well-documented and maintainable.
-
-## 9. Data Requirements
-
-- **Data Models**:
-  - **User**: { id, email, password_hash }
-  - **Product**: { id, name, description, price, category, stock }
-  - **Order**: { id, user_id, product_ids, total_price, shipping_info, status }
-- **Database Requirements**:
-  - Use MongoDB for storing user, product, and order data.
-- **Data Storage and Retrieval**:
-  - Users can retrieve their account and order information.
-
 ## 10. External Interface Requirements
 
 - **User Interfaces**:
+
   - Registration/Login page
   - Product Catalog page
   - Product Detail page
   - Shopping Cart page
   - Checkout page
-- **API Interfaces**:
-  - Payment gateway API (e.g., Stripe API) for processing payments.
-- **Hardware Interfaces**:
-  - None required.
-- **Software Interfaces**:
-  - Interact with the MongoDB database.
-  - Connect with the payment gateway for transactions.
-
-## 11. Glossary
-
-- **API**: Application Programming Interface
-
-## 12. Appendices
 
 - **Supporting Information**:
   - User flow diagrams
