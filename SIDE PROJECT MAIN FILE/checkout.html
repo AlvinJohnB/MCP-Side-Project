@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - BookingApp</title>
+    <link rel="stylesheet" href="index.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+  </head>
+  <body class="bg-light">
+    <!-- Navigation -->
+    <section class="container-fluid p-2 visible">
+      <nav class="navbar navbar-expand-lg navbar-modern shadow-sm px-3">
+        <div class="container-fluid">
+          <a class="navbar-brand fw-bold text-gradient" href="index.html">
+            <i class="bi bi-globe2 me-2"></i>BookingApp
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="mainNavbar">
+            <!-- ms-auto pushes this div to the right -->
+            <div
+              class="ms-auto d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-2"
+            >
+              <a
+                href="./cart.html"
+                class="btn btn-nav rounded-pill position-relative"
+              >
+                <i class="bi bi-cart3 me-1"></i>Cart
+                <span
+                  id="cartCount"
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count-badge"
+                  >1</span
+                >
+              </a>
+              <a href="./register.html" class="btn btn-nav rounded-pill">
+                <i class="bi bi-person-plus me-1"></i>Register
+              </a>
+              <a href="./login.html" class="btn btn-nav rounded-pill">
+                <i class="bi bi-box-arrow-in-right me-1"></i>Login
+              </a>
+              <span
+                id="welcomeUser"
+                class="fw-bold text-dark ms-lg-2 ms-0 mt-lg-0 mt-2"
+              ></span>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </section>
+
+    <!-- Header -->
+    <div class="checkout-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h1 class="display-4 fw-bold mb-3">Secure Checkout</h1>
+            <p class="lead">Complete your booking in just a few simple steps</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress Steps -->
+    <div class="container my-5">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex justify-content-center align-items-center mb-5">
+            <div class="text-center me-4">
+              <div class="progress-step completed">
+                <i class="bi bi-cart3"></i>
+              </div>
+              <small class="d-block mt-2 text-muted">Cart</small>
+            </div>
+            <div class="border-top flex-grow-1 mx-3 progress-line-active"></div>
+            <div class="text-center me-4">
+              <div class="progress-step active">
+                <i class="bi bi-person"></i>
+              </div>
+              <small class="d-block mt-2 text-primary fw-bold">Details</small>
+            </div>
+            <div
+              class="border-top flex-grow-1 mx-3 progress-line-inactive"
+            ></div>
+            <div class="text-center">
+              <div class="progress-step">
+                <i class="bi bi-credit-card"></i>
+              </div>
+              <small class="d-block mt-2 text-muted">Payment</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mb-5">
+      <div class="row">
+        <!-- Booking Details Form -->
+        <div class="col-lg-8">
+          <div class="checkout-form-card card">
+            <div class="card-header">
+              <h4 class="mb-0 text-gradient">
+                <i class="bi bi-person-circle me-2"></i>Traveler Information
+              </h4>
+            </div>
+            <div class="card-body">
+              <form id="checkoutForm">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="firstName" class="form-label"
+                      >First Name *</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="firstName"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="lastName" class="form-label">Last Name *</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="lastName"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label"
+                      >Email Address *</label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="phone" class="form-label">Phone Number *</label>
+                    <input
+                      type="tel"
+                      class="form-control"
+                      id="phone"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="address" class="form-label">Address *</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="address"
+                    placeholder="Street address"
+                    required
+                  />
+                </div>
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <label for="city" class="form-label">City *</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="city"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="state" class="form-label"
+                      >State/Province *</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="state"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="zipCode" class="form-label"
+                      >ZIP/Postal Code *</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="zipCode"
+                      required
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Special Requests -->
+          <div class="checkout-form-card card">
+            <div class="card-header">
+              <h4 class="mb-0 text-gradient">
+                <i class="bi bi-star me-2"></i>Special Requests
+              </h4>
+            </div>
+            <div class="card-body">
+              <div class="mb-3">
+                <label for="specialRequests" class="form-label"
+                  >Additional Information</label
+                >
+                <textarea
+                  class="form-control"
+                  id="specialRequests"
+                  rows="4"
+                  placeholder="Any special requests, dietary requirements, or additional information..."
+                ></textarea>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="newsletter"
+                />
+                <label class="form-check-label" for="newsletter">
+                  Subscribe to our newsletter for travel tips and exclusive
+                  deals
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="col-lg-4">
+          <div class="booking-summary-card card">
+            <div class="card-header">
+              <h4 class="mb-0">
+                <i class="bi bi-receipt me-2"></i>Booking Summary
+              </h4>
+            </div>
+            <div class="card-body">
+              <div id="bookingSummary">
+                <!-- Dynamic content will be loaded here -->
+                <div class="booking-item mb-3 pb-3 border-bottom">
+                  <div class="d-flex">
+                    <img
+                      src="./images/Palawan.jpg"
+                      alt="Palawan Tour"
+                      class="booking-item-image me-3"
+                    />
+                    <div class="flex-grow-1">
+                      <h6 class="mb-1">Palawan - Nature's Last Frontier</h6>
+                      <small class="text-muted">3 Days, 2 Nights</small>
+                      <div class="price-display fw-bold">₱15,500</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="price-breakdown">
+                <div class="d-flex justify-content-between">
+                  <span>Subtotal:</span>
+                  <span id="subtotal">₱15,500</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span>Service Fee:</span>
+                  <span id="serviceFee">₱500</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span>Taxes:</span>
+                  <span id="taxes">₱0</span>
+                </div>
+                <hr />
+                <div class="d-flex justify-content-between fw-bold fs-5">
+                  <span>Total:</span>
+                  <span class="price-display" id="total">₱16,000</span>
+                </div>
+              </div>
+
+              <a
+                href="./payment.html"
+                class="btn btn-checkout btn-primary w-100 mt-4"
+              >
+                <i class="bi bi-lock me-2"></i>Proceed to Payment
+              </a>
+
+              <div class="security-info">
+                <small class="text-muted">
+                  <i class="bi bi-shield-check me-1"></i>
+                  Secure 256-bit SSL encryption
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

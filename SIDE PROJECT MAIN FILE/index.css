@@ -3,79 +3,83 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
   font-family: Arial, sans-serif;
-  /*background-color: #f8f9fa;*/
 }
 
 main {
   padding: 2rem;
 }
 
-h2 {
-  margin-top: 250px !important;
+/* Modern Navbar Styles */
+
+.navbar-modern {
+  background: #fff;
+  border-radius: 1.5rem;
+  margin: 1.5rem auto 2rem auto;
+  max-width: 1500px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07), 0 1.5px 4px rgba(0, 0, 0, 0.03);
+  transition: box-shadow 0.2s;
 }
 
-/* NAVBAR */
-.navbar {
-  height: 75px;
-  background-color: white !important;
-  z-index: 1050;
-  position: sticky;
-  top: 0;
+.navbar-modern .navbar-brand {
+  font-size: 2rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+  padding-left: 0.5rem;
 }
+
+.text-gradient {
+  background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.btn-nav {
+  background: linear-gradient(90deg, #f8fafc 0%, #e3f0ff 100%);
+  color: #007bff;
+  border: none;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.07);
+  padding: 0.5rem 1.2rem;
+  margin-right: 0.2rem;
+}
+.btn-nav:hover,
+.btn-nav:focus {
+  background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0, 123, 255, 0.13);
+}
+
+.navbar-modern .navbar-toggler {
+  border: none;
+  background: #e3f0ff;
+  border-radius: 50%;
+  padding: 0.5rem 0.7rem;
+}
+
+.navbar-modern .navbar-toggler:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #007bff33;
+}
+
 @media (max-width: 991.98px) {
-  .navbar {
-    background-color: white !important;
-  }
-}
-
-.navbar-toggler {
-  border: none !important;
-  box-shadow: none !important;
-  outline: none !important;
-  background: white !important;
-  padding: 0.375rem 0.75rem;
-}
-
-.navbar-toggler:focus,
-.navbar-toggler:active {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-/* Mobile Navbar Styling */
-@media (max-width: 991.98px) {
-  #mainNavbar .btn {
-    width: 100%;
-    text-align: left;
+  .navbar-modern {
     border-radius: 0;
-    background-color: white !important;
-  }
-
-  #mainNavbar {
-    padding-top: 0.5rem;
+    margin: 0;
+    max-width: 100%;
   }
 }
 
-/* BACKGROUND SECTION */
-#homepage {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;   
+/* Landing */
+#landing {
   height: 100vh;
-  text-align: center;    
-  background-image: url(./images/El_Nido.jpeg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 1rem;        
-  color: white;
-  position: relative;
-  padding-bottom: 300px; 
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url(./images/El_Nido.jpeg) center/cover no-repeat;
 }
 
 .tours-message {
@@ -83,7 +87,7 @@ h2 {
   transform: none !important;
   max-width: 90%;
   margin: 0 auto;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 }
 
 /* Responsive font sizes */
@@ -109,19 +113,6 @@ h2 {
   }
 }
 
-/* BOOKING */
-.booking-tabs-overlap {
-  margin-top: -500px; /* overlap amount */
-  position: relative;
-  z-index: 10;
-}
-
-@media (max-width: 767.98px) {
-  .booking-tabs-overlap {
-    margin-top: 0;  /* or a smaller negative value if you want */
-  }
-}
-
 /* DESTINATIONS SECTION */
 section h2 {
   margin-top: -10rem;
@@ -130,25 +121,16 @@ section h2 {
   text-align: center;
 }
 
-#destinations {
-  margin-top: -300px !important;
-}
-
-.row h1 {
-  margin-top: 20px;
-  padding-top: 20px;
-  font-size: 25px;
-}
-
-.row p {
-  font-size: 15px;
-  text-align: justify;
-}
-
 /* DESTINATION CARDS */
-#destinations {
-  margin-top: -100px;
+
+.destination-card img {
+  transition: transform 0.3s cubic-bezier(0.4, 2, 0.6, 1);
 }
+.destination-card:hover img {
+  transform: scale(1.07);
+  filter: brightness(0.92) saturate(1.1);
+}
+
 .card-container {
   display: flex;
   justify-content: center;
@@ -174,6 +156,221 @@ section h2 {
 .card-content {
   padding: 16px;
   text-align: center;
+}
+
+/* MODERN CARD STYLES */
+.card-modern {
+  border: none;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07), 0 1.5px 4px rgba(0, 0, 0, 0.03);
+  transition: box-shadow 0.2s;
+}
+
+.card-modern:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+/* FORM STYLES */
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
+}
+
+/* HEADER STYLES */
+.checkout-header,
+.payment-header {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url(./images/palawan-header.jpg) center/cover no-repeat;
+  color: white;
+  padding: 6rem 0 4rem 0;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* PROGRESS STEPS */
+.progress-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #f8fafc 0%, #e3f0ff 100%);
+  color: #007bff;
+  font-weight: bold;
+  margin: 0 auto;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.07);
+  transition: all 0.3s ease;
+}
+
+.progress-step.active {
+  background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+  color: white;
+  box-shadow: 0 4px 16px rgba(0, 123, 255, 0.3);
+}
+
+.progress-step.completed {
+  background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+  color: white;
+  box-shadow: 0 4px 16px rgba(40, 167, 69, 0.3);
+}
+
+/* Payment page specific progress step active state */
+.payment-page .progress-step.active {
+  background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+  color: white;
+  box-shadow: 0 4px 16px rgba(40, 167, 69, 0.3);
+}
+
+/* BUTTON STYLES */
+.btn-checkout {
+  background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+  border: none;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  border-radius: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 123, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-checkout:hover {
+  background: linear-gradient(90deg, #0056b3 0%, #007bff 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+}
+
+.btn-pay {
+  background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+  border: none;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  border-radius: 2rem;
+  box-shadow: 0 4px 16px rgba(40, 167, 69, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-pay:hover {
+  background: linear-gradient(90deg, #20c997 0%, #17a2b8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
+}
+
+/* BOOKING & ORDER SUMMARY */
+.booking-summary,
+.order-summary {
+  background: linear-gradient(90deg, #f8fafc 0%, #e3f0ff 100%);
+  padding: 2rem;
+  border: 1px solid rgba(0, 123, 255, 0.1);
+}
+
+.price-breakdown {
+  border-top: 2px solid #007bff;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.07);
+}
+
+/* PAYMENT METHODS */
+.payment-method {
+  border: 2px solid #e9ecef;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.payment-method:hover {
+  border-color: #007bff;
+  background: linear-gradient(90deg, #f8fafc 0%, #e3f0ff 100%);
+}
+
+.payment-method.selected {
+  border-color: #007bff;
+  background: linear-gradient(90deg, #e3f0ff 0%, #f8fafc 100%);
+}
+
+/* CREDIT CARD FORM */
+.credit-card-form {
+  background: linear-gradient(90deg, #f8fafc 0%, #e3f0ff 100%);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  margin-top: 1rem;
+  border: 1px solid rgba(0, 123, 255, 0.1);
+}
+
+/* SECURITY FEATURES */
+.security-features {
+  background: linear-gradient(90deg, #e8f5e8 0%, #f0fff0 100%);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  border: 1px solid rgba(40, 167, 69, 0.1);
+}
+
+/* UTILITIES */
+.cart-count-badge {
+  font-size: 0.8em;
+}
+
+.cart-count-hidden {
+  display: none;
+}
+
+.sticky-summary {
+  top: 100px;
+}
+
+.card-header-gradient-blue {
+  background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+  border-radius: 1.5rem 1.5rem 0 0 !important;
+}
+
+.card-header-gradient-green {
+  background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+  border-radius: 1.5rem 1.5rem 0 0 !important;
+}
+
+.progress-line-active {
+  height: 2px;
+  max-width: 100px;
+  background: linear-gradient(90deg, #28a745 0%, #007bff 100%);
+}
+
+.progress-line-completed {
+  height: 2px;
+  max-width: 100px;
+  background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+}
+
+.progress-line-inactive {
+  height: 2px;
+  max-width: 100px;
+  background: #e9ecef;
+}
+
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.icon-large {
+  font-size: 3rem;
+}
+
+.icon-xlarge {
+  font-size: 4rem;
+}
+
+.modal-modern {
+  border: none;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+}
+
+.success-icon {
+  color: #28a745;
 }
 
 /* CART SECTION */
@@ -254,6 +451,181 @@ section {
 }
 section.visible {
   display: block;
+}
+
+/* CART SPECIFIC STYLES */
+.cart-item-card {
+  border: none;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07), 0 1.5px 4px rgba(0, 0, 0, 0.03);
+  transition: box-shadow 0.2s;
+  overflow: hidden;
+}
+
+.cart-item-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.cart-item-card .card-body {
+  padding: 1.5rem;
+}
+
+.cart-item-card .card-title {
+  color: #212529;
+  margin-bottom: 0.75rem;
+}
+
+.cart-item-card .card-text {
+  color: #6c757d;
+  line-height: 1.5;
+}
+
+.cart-summary-card {
+  border: none;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07), 0 1.5px 4px rgba(0, 0, 0, 0.03);
+}
+
+.cart-summary-card .card-body {
+  padding: 2rem;
+}
+
+.cart-summary-card .card-title {
+  color: #212529;
+  font-weight: 700;
+}
+
+.price-display {
+  color: #007bff;
+  font-weight: 700;
+}
+
+.quantity-controls .btn {
+  border-color: #dee2e6;
+  color: #6c757d;
+}
+
+.quantity-controls .btn:hover {
+  background-color: #f8f9fa;
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.object-fit-cover {
+  object-fit: cover;
+}
+
+/* CHECKOUT SPECIFIC STYLES */
+.checkout-form-card {
+  border: none;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07), 0 1.5px 4px rgba(0, 0, 0, 0.03);
+  margin-bottom: 1.5rem;
+}
+
+.checkout-form-card .card-header {
+  background: white;
+  border: none;
+  border-radius: 1.5rem 1.5rem 0 0;
+  padding: 1.5rem;
+}
+
+.checkout-form-card .card-body {
+  padding: 1.5rem;
+}
+
+.booking-summary-card {
+  border: none;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07), 0 1.5px 4px rgba(0, 0, 0, 0.03);
+  position: sticky;
+  top: 2rem;
+}
+
+.booking-summary-card .card-header {
+  background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+  color: white;
+  border: none;
+  border-radius: 1.5rem 1.5rem 0 0;
+  padding: 1.5rem;
+}
+
+.booking-summary-card .card-body {
+  padding: 1.5rem;
+}
+
+.booking-item-image {
+  width: 60px !important;
+  height: 60px !important;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.security-info {
+  background: #f8f9fa;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 0.5rem;
+}
+
+/* PAYMENT SPECIFIC STYLES */
+.payment-progress-line-active {
+  height: 2px;
+  max-width: 100px;
+  background: linear-gradient(90deg, #28a745 0%, #007bff 100%);
+}
+
+.payment-progress-line-completed {
+  height: 2px;
+  max-width: 100px;
+  background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+}
+
+.card-input-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
+}
+
+.payment-summary-header {
+  background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: none;
+  border-radius: 1.5rem 1.5rem 0 0;
+  padding: 1.5rem;
+}
+
+.payment-summary-card {
+  border: none;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07), 0 1.5px 4px rgba(0, 0, 0, 0.03);
+  position: sticky;
+  top: 100px;
+}
+
+.payment-modal-content {
+  border: none;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+}
+
+.payment-modal-icon {
+  font-size: 4rem;
+  color: #28a745;
+}
+
+.total-price-success {
+  color: #28a745;
+  font-weight: 700;
 }
 
 /* USER INFO IN NAVBAR */
