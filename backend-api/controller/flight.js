@@ -120,6 +120,32 @@ module.exports.activateFlight = (req, res) => {
     });
 };
 
+// Delete Flight 
+module.exports.deleteFlight = (req, res) => {
+  const flightId = req.params.flightId;
+
+  if (!flightId) {
+    return res.status(400).send({ success: false, message: "Flight ID is required" });
+  }
+
+  Flight.findByIdAndDelete(flightId)
+    .then((deletedFlight) => {
+      if (!deletedFlight) {
+        return res.status(404).send({ success: false, message: "Flight not found" });
+      }
+
+      return res.status(200).send({
+        success: true,
+        message: "Flight deleted successfully",
+        data: deletedFlight,
+      });
+    })
+    .catch((error) => {
+      console.error("Error deleting flight:", error);
+      return res.status(500).send({ success: false, message: "Server error" });
+    });
+};
+
 // USER SIDE
 
 // Get all flights

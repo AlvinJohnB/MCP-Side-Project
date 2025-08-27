@@ -9,6 +9,7 @@ router.post("/add", verify, verifyAdmin, flightController.addFlight);
 router.put("/update/:flightId", verify, verifyAdmin, flightController.updateFlight);
 router.put("/archive/:flightId", verify, verifyAdmin, flightController.archiveFlight);
 router.put("/activate/:flightId", verify, verifyAdmin, flightController.activateFlight);
+router.delete("/delete/:flightId", verify, verifyAdmin, flightController.deleteFlight); 
 
 //  USER SIDE
 router.get("/",  flightController.getFlights);
