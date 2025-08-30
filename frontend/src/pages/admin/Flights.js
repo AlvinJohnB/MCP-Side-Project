@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Notyf } from "notyf";
 
 export default function Flights() {
   const [airports, setAirports] = useState([]);
@@ -11,6 +12,12 @@ export default function Flights() {
     departureTime: "",
     price: "",
   });
+
+  const notyf = new Notyf({
+    duration: 3000,
+    position: { x: "right", y: "top" },
+  });
+
 
   useEffect(() => {
     const fetchAirports = async () => {
@@ -27,8 +34,8 @@ export default function Flights() {
   const handleAddFlight = async (e) => {
     e.preventDefault();
 
-    // console.log(flight);
-    const response = await fetch(
+    try {// console.log(flight);
+       const response = await fetch(
       `${process.env.REACT_APP_API_URL}/flights/create`,
       {
         method: "POST",
@@ -41,13 +48,31 @@ export default function Flights() {
 
     const data = await response.json();
     console.log(data);
+
+    if (response.ok) {
+        notyf.success("Flight added successfully");
+        setFlight({
+          flightNumber: "",
+          origin: "",
+          destination: "",
+          departureDate: "",
+          departureTime: "",
+          price: "",
+        }); // clear form
+      } else {
+        notyf.error(data.message || "Failed to add flight");
+      }
+    } catch (error) {
+      console.error(error);
+      notyf.error("Network error");
+    }
   };
 
   return (
-    <div>
+    <div className="flights-container">
       <h1>Flight</h1>
       <h3>Add Flight</h3>
-      <form onSubmit={handleAddFlight}>
+      <form onSubmit={handleAddFlight} className="flights-card">
         <input
           value={flight.flightNumber}
           onChange={(e) =>

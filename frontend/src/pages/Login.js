@@ -1,13 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`${process.env.REACT_APP_API_URL}/login`, {
+    fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,6 +24,10 @@ export default function Login() {
       })
       .then((data) => {
         console.log("Login successful:", data);
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+        }
+        navigate("/");
       })
       .catch((error) => {
         console.error("Error logging in:", error);

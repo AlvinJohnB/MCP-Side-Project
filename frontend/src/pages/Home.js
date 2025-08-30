@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import Swal from "sweetalert2";
 import FlightSearchModal from "../components/FlightSearchModal";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [flightSearchModalShow, setFlightSearchModalShow] = useState(true);
@@ -140,6 +141,7 @@ export default function Home() {
             <Nav className="justify-content-end">
               <Nav.Link href="#home">Cart</Nav.Link>
               <Nav.Link href="#home">Manage Bookings</Nav.Link>
+              <Nav.Link as={Link} to="/logout">Logout</Nav.Link>
             </Nav>
           </Container>
         </Navbar>

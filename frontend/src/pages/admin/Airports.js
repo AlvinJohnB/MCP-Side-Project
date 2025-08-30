@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { Notyf } from "notyf";
 
 export default function Airports() {
   const [airports, setAirports] = useState([]);
@@ -17,31 +18,54 @@ export default function Airports() {
     airport: "",
   });
 
+  const notyf = useMemo(() => new Notyf({
+    duration: 2000,
+    position: { x: "right", y: "top" }
+  }), []);
+
   useEffect(() => {
     const fetchAirports = async () => {
+      try {
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/flights/airports`
       );
       const data = await response.json();
       setAirports(data.data);
       //   console.log(data.data);
-    };
+    } catch (error) {
+      notyf.error("Failed to load airports");
+      console.error(error);
+    }
+  };
     fetchAirports();
-  }, []);
+  }, [notyf]);
 
   const handleAddAirport = async (e) => {
     e.preventDefault();
     // Add airport logic here
-    console.log(airport);
-    await fetch(`${process.env.REACT_APP_API_URL}/flights/airports`, {
+    try {
+      console.log(airport);
+     const response = await 
+      fetch(`${process.env.REACT_APP_API_URL}/flights/airports`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(airport),
-    }).then((response) => {
-      console.log(response);
-    });
+  }
+);
+      const data = await response.json();
+
+      if (response.ok) {
+        notyf.success("Airport added successfully ✈️");
+        setAirport({ name: "", location: "", code: "" }); 
+      } else {
+        notyf.error(data.message || "Failed to add airport ❌");
+      }
+    } catch (error) {
+      notyf.error("Network error ❌");
+      console.error(error);
+    }
   };
 
   const handleAddDestination = async (e) => {
@@ -75,19 +99,29 @@ export default function Airports() {
       const data = await res.json();
       if (res.ok) {
         console.log(data);
+        notyf.success("Destination added successfully");
+        setDestination({
+          name: "",
+          nickname: "",
+          description: "",
+          image: null,
+          airport: "",
+        });
       } else {
         console.log(data);
+        notyf.error(data.message || "Failed to add destination ");
       }
     } catch (error) {
       // Handle network errors
+      notyf.error("Error updating destination ");
       console.error("Error updating destination:", error);
     }
   };
 
   return (
-    <div>
-      <h1>Airports</h1>
-      <div>
+    <div className="airports-container">
+      <h1 className="airports-section-title">Airports</h1>
+      <div className="airports-card">
         <h3>Add Airport</h3>
         <form onSubmit={handleAddAirport}>
           <input
@@ -115,7 +149,7 @@ export default function Airports() {
         </form>
       </div>
 
-      <div>
+      <div className="airports-card">
         <h3>Destinations</h3>
         <form encType="multipart/form-data" onSubmit={handleAddDestination}>
           <input
