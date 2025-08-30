@@ -26,3 +26,88 @@
 .card-modern:hover {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
 }
+
+/* Home */
+.flight-search-wrapper {
+  border-radius: 20px;
+  box-shadow: 10px 14px 8px rgba(0, 0, 0, 0.37);
+}
+
+.flight-search-header {
+  border-bottom: 1px solid #ddd;
+  border-radius: 10px 10px 0px 0px;
+  background-color: rgba(0, 0, 0, 0.705) !important;
+}
+
+.flight-search-body {
+  border-radius: 0px 0px 10px 10px;
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.search-input-suggestion ul {
+  list-style: none;
+  width: 105%;
+  max-height: 200px;
+  overflow-y: scroll;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 0;
+}
+
+.search-input-suggestion li:hover {
+  cursor: pointer;
+  background-color: #007bff;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.landing {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../public/images/El_Nido.jpeg) center/cover no-repeat;
+  color: white;
+  height: 60vh;
+}
+
+.destination-card img {
+  transition: transform 0.3s cubic-bezier(0.4, 2, 0.6, 1);
+}
+.destination-card:hover img {
+  transform: scale(1.07);
+  filter: brightness(0.92) saturate(1.1);
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.card {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 16px;
+  text-align: center;
+}
