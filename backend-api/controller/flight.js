@@ -11,32 +11,39 @@ module.exports.createFlight = async (req, res) => {
       message: "Flight created successfully",
       data: result,
     });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send({ success: false, message: error.message });
+  }
 };
 
-// Delete Flight 
-module.exports.deleteFlight = (req, res) => {
+// Delete Flight
+module.exports.deleteFlight = async (req, res) => {
   const flightId = req.params.flightId;
 
   if (!flightId) {
-    return res.status(400).send({ success: false, message: "Flight ID is required" });
+    return res
+      .status(400)
+      .send({ success: false, message: "Flight ID is required" });
   }
 
-  Flight.findByIdAndDelete(flightId)
-    .then((deletedFlight) => {
-      if (!deletedFlight) {
-        return res.status(404).send({ success: false, message: "Flight not found" });
-      }
+  try {
+    const deletedFlight = await Flight.findByIdAndDelete(flightId);
+    if (!deletedFlight) {
+      return res
+        .status(404)
+        .send({ success: false, message: "Flight not found" });
+    }
 
-      return res.status(200).send({
-        success: true,
-        message: "Flight deleted successfully",
-        data: deletedFlight,
-      });
-    })
-    .catch((error) => {
-      console.error("Error deleting flight:", error);
-      return res.status(500).send({ success: false, message: "Server error" });
+    return res.status(200).send({
+      success: true,
+      message: "Flight deleted successfully",
+      data: deletedFlight,
     });
+  } catch (error) {
+    console.error("Error deleting flight:", error);
+    return res.status(500).send({ success: false, message: "Server error" });
+  }
 };
 
 // USER SIDE
@@ -181,7 +188,6 @@ module.exports.DeleteAirport = async (req, res) => {
 module.exports.AddDestination = async (req, res) => {
   try {
     const airportId = req.params.id;
-    console.log(req.body);
     const { image, name, nickname, description } = req.body;
 
     const airport = await Airport.findById(airportId);
@@ -208,7 +214,9 @@ module.exports.AddDestination = async (req, res) => {
 module.exports.getAllDestinations = async (req, res) => {
   try {
     const airports = await Airport.find({}, "destinations").lean();
-    const destinations = airports.flatMap((airport) => airport.destinations);
+    const destinations = airports.flatMap(
+      (airport) => airport.destinations || []
+    );
     return res.status(200).json({
       success: true,
       data: destinations,
