@@ -11,11 +11,35 @@ module.exports.createFlight = async (req, res) => {
       message: "Flight created successfully",
       data: result,
     });
-  } catch (err) {
-    console.error(err);
-    return res.status(500).send({ success: false, message: err.message });
-  }
 };
+
+// Delete Flight 
+module.exports.deleteFlight = (req, res) => {
+  const flightId = req.params.flightId;
+
+  if (!flightId) {
+    return res.status(400).send({ success: false, message: "Flight ID is required" });
+  }
+
+  Flight.findByIdAndDelete(flightId)
+    .then((deletedFlight) => {
+      if (!deletedFlight) {
+        return res.status(404).send({ success: false, message: "Flight not found" });
+      }
+
+      return res.status(200).send({
+        success: true,
+        message: "Flight deleted successfully",
+        data: deletedFlight,
+      });
+    })
+    .catch((error) => {
+      console.error("Error deleting flight:", error);
+      return res.status(500).send({ success: false, message: "Server error" });
+    });
+};
+
+// USER SIDE
 
 // Get all flights
 module.exports.getFlights = async (req, res) => {
@@ -64,7 +88,6 @@ module.exports.bookFlight = async (req, res) => {
         .json({ success: false, message: "Flight not found" });
     }
 
-    // For now, we just return flight + passenger info
     return res.status(200).json({
       success: true,
       message: "Flight booked successfully",
