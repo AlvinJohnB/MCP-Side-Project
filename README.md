@@ -93,7 +93,17 @@
   - **v1.0**: Initial version - June 24, 2024
 
 
-*** Airline Booking System – Functional Prototype Documentation ***
+# TRELLO SCREENSHOT AND LINK 
+
+TrelloScreenshot.PNG
+Link: https://trello.com/b/1sL6G5hR/side-project
+
+
+# Visual Prototype Link (GitHub Hosted Link): 
+
+Link: https://flight-booking-app-pearl.vercel.app
+
+# Airline Booking System – Functional Prototype Documentation 
 ## 1. Project Overview
 
 The Airline Booking System prototype demonstrates the core functionality of an airline’s reservation system. The prototype showcases user interactions, including flight search, flight selection, booking, and confirmation.
