@@ -91,3 +91,162 @@
   - Wireframes
 - **Revision History**:
   - **v1.0**: Initial version - June 24, 2024
+
+
+*** Airline Booking System – Functional Prototype Documentation ***
+## 1. Project Overview
+
+The Airline Booking System prototype demonstrates the core functionality of an airline’s reservation system. The prototype showcases user interactions, including flight search, flight selection, booking, and confirmation.
+
+Purpose of Prototype:
+
+Validate user experience and flow
+
+Demonstrate key system features without full backend
+
+Serve as a reference for final system design and development
+
+## 2. Prototype Scope
+
+-The prototype focuses on essential user interactions and system processes:
+
+-User-Facing Features
+
+-Flight Search
+
+-Search flights by origin, destination, and date
+
+-Display available flights with time and price
+
+-Flight Selection
+
+-Choose a flight from search results
+
+-Booking Form
+
+-Enter passenger details (name, email, etc.)
+
+-Booking Confirmation
+
+-Display confirmation details including flight and passenger information
+
+-Admin Features
+
+-View available flights
+
+-Manage bookings
+
+## 3. User Flow Diagram
+
+ ┌────────────┐
+ │ Homepage   │
+ └─────┬──────┘
+       ↓
+ ┌────────────┐
+ │ Search     │
+ │ Flights    │
+ └─────┬──────┘
+       ↓
+ ┌────────────┐
+ │ Available  │
+ │ Flights    │
+ └─────┬──────┘
+       ↓
+ ┌────────────┐
+ │ Select     │
+ │ Flight     │
+ └─────┬──────┘
+       ↓
+ ┌────────────┐
+ │ Booking    │
+ │ Form       │
+ └─────┬──────┘
+       ↓
+ ┌─────────────┐
+ │ Confirmation│
+ │ Page        │
+ └─────────────┘
+
+## 4. Data Requirements
+
+The prototype uses simplified mock data:
+
+Example Flight Record:
+
+Fligth Number:PR123
+Origin: Manila
+Destination: Cebu
+
+
+## 5. Functional Requirements
+Feature	Description	Input	Output
+Search Flights	Find flights based on origin, destination, and date	From, To, Date	List of available flights
+Select Flight	Choose a flight from search results	Flight ID	Flight selected for booking
+Enter Passenger Details	Input passenger information	Name, Email	Data stored in booking record
+Confirm Booking	Display booking confirmation	Booking details	Confirmation message with flight info.
+
+## 6. Non-Functional Requirements
+
+Usability: Simple and intuitive user interface
+
+Performance: Fast search using mock data
+
+Portability: Prototype runs on web browsers
+
+Reliability: Mock data simulates expected system behavior
+
+## 7. Tools Used
+
+ ***Category***	            ***Tool / Technology ***         
+Frontend (Optional)	         React.js, HTML, CSS
+Backend Simulation	         Node.js / Express
+Data Storage	               MongoDB
+
+## 8. Limitations
+
+Admin features are limited or not fully functional
+
+
+## 9. Testing
+
+Flight Search Test: Verify search returns correct results for given input
+
+Flight Selection Test: Verify selected flight data is passed to booking form
+
+Booking Submission Test: Verify confirmation displays correct passenger and flight details
+
+
+## 10. Future Enhancements
+
+Integration with a real database (MongoDB)
+
+Payment gateway integration ()
+
+User login and profile management
+
+Seat selection and dynamic pricing
+
+Admin panel for managing flights and bookings
+
+## 11. Mock Flight Search & Booking Workflow (Visual)
+
+
+          User opens Homepage
+                  │
+                  ▼
+      Enters flight search details
+                  │
+                  ▼
+    System displays available flights
+                  │
+                  ▼
+          User selects a flight
+                  │
+                  ▼
+      User enters passenger details
+                  │
+                  ▼
+           Booking is confirmed
+                  │
+                  ▼
+  Confirmation page shows booking summary
