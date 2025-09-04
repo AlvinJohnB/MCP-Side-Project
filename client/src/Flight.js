@@ -1,6 +1,65 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import moment from "moment";
 
 export default function Flight() {
+  const navigate = useNavigate();
+  const [flight, setflight] = useState(null);
+  const { id } = useParams();
+
+  const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    const fetchFlight = async () => {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/flights/searchFlightById/${id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("access")}`,
+          },
+        }
+      );
+      const data = await response.json();
+      setflight(data);
+      console.log(data);
+    };
+    fetchFlight();
+  }, []);
+
+  const handleCheckout = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/bookings`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("access")}`,
+          },
+          body: JSON.stringify({
+            flightId: flight._id,
+            quantity,
+            totalPrice: flight.price * quantity,
+          }),
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setQuantity(1);
+        setflight(null);
+        navigate(`/bookings/${data.booking._id}`);
+        // console.log(data);
+      } else {
+        const error = await response.json();
+        console.error("Error creating booking:", error);
+      }
+    } catch (error) {
+      console.error("Error creating booking:", error);
+    }
+  };
+
   return (
     <>
       <div className="row text-dark col-12 col-lg-6 mx-auto manage-flight-wrapper">
@@ -8,110 +67,58 @@ export default function Flight() {
           <h3 className="px-4"></h3>
         </div>
         <div className="bg-light col-12 p-4 manage-flight-body">
-          {/* <form
-            //   onSubmit={handleUpdateAirport}
-            className="d-flex flex-wrap align-items-end gap-2"
-          >
-            <div className="col-12 position-relative col-md text-start">
-              <label className="form-label m-0 fw-semibold">Destination</label>
-              <input
-                className="form-control border rounded"
-                type="text"
-                placeholder="Airport Name"
-                //   value={selectedAirport.name}
-                //   onChange={(e) =>
-                //     setSelectedAirport({
-                //       ...selectedAirport,
-                //       name: e.target.value,
-                //     })
-                //   }
-              />
-            </div>
-
-            <div className="col-12 position-relative col-md text-start">
-              <label className="form-label m-0 fw-semibold">Origin</label>
-              <input
-                type="text"
-                placeholder="Location"
-                className="form-control border rounded"
-                //   value={selectedAirport.location}
-                //   onChange={(e) =>
-                //     setSelectedAirport({
-                //       ...selectedAirport,
-                //       location: e.target.value,
-                //     })
-                //   }
-              />
-            </div>
-
-            <div className="col-12 col-md text-start">
-              <label className="form-label m-0 fw-semibold">
-                Flight Number
-              </label>
-              <input
-                placeholder="Flight Number"
-                type="text"
-                className="form-control"
-                //   value={selectedAirport.code}
-                //   onChange={(e) =>
-                //     setSelectedAirport({
-                //       ...selectedAirport,
-                //       code: e.target.value,
-                //     })
-                //   }
-              />
-            </div>
-            <div className="col-12 col-md">
-              <button type="submit" className="btn btn-theme col-5 me-2">
-                Update Airport
-              </button>
-              <button
-                //   onClick={() => setSelectedAirport(null)}
-                className="btn btn-warning col-5"
-              >
-                Reset
-              </button>
-            </div>
-          </form> */}
-
-          <div class="row justify-content-center">
-            <div class="col-lg-12">
-              <div class="cart-item-card card mb-4">
-                <div class="row g-0">
-                  <div class="col-md-4">
-                    {/* <!-- <img
-                  src="./images/Palawan.jpg"
-                  class="img-fluid h-100 object-fit-cover"
-                  alt="Palawan"
-                /> --> */}
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title fw-bold text-gradient">
-                        Palawan - Nature's Last Frontier
+          <div className="row justify-content-center">
+            <div className="col-lg-12">
+              <div className="cart-item-card card mb-4">
+                <div className="row g-0">
+                  <div className="col-md-12">
+                    <div className="card-body">
+                      <h5 className="card-title fw-bold text-gradient">
+                        {flight?.origin?.name || ""}{" "}
+                        <span className="mx-2" role="img" aria-label="arrow">
+                          &#8594;
+                        </span>{" "}
+                        {flight?.destination?.name || ""}
                       </h5>
-                      <p class="card-text">
-                        3 Days / 2 Nights Package
+                      <p className="card-text">
+                        {flight?.origin?.code || ""}{" "}
+                        <span className="mx-2" role="img" aria-label="arrow">
+                          &#8594;
+                        </span>{" "}
+                        {flight?.destination.code || ""}
                         <br />
-                        Includes: El Nido Island Hopping, Coron Lake Tours,
-                        Puerto Princesa Underground River
+                        {moment(flight?.departureDate).format(
+                          "MMMM D, YYYY"
+                        )} -{" "}
+                        {moment(flight?.departureTime, "HH:mm").format(
+                          "h:mm A"
+                        )}
                       </p>
-                      <div class="d-flex justify-content-between align-items-center">
+                      <div className="d-flex justify-content-between align-items-center">
                         <div>
-                          <span class="text-muted">Price per person:</span>
-                          <h4 class="price-display mb-0">₱15,500</h4>
+                          <span className="text-muted">Price per ticket:</span>
+                          <h4 className="price-display mb-0">
+                            ₱ {Math.floor(flight?.price).toFixed(2)}
+                          </h4>
                         </div>
-                        <div class="d-flex align-items-center quantity-controls">
-                          <button class="btn btn-outline-secondary btn-sm me-2">
-                            <i class="bi bi-dash"></i>
+                        <div className="d-flex align-items-center quantity-controls">
+                          <button
+                            className="btn btn-outline-secondary btn-sm me-2"
+                            onClick={() => setQuantity(quantity - 1)}
+                            disabled={quantity === 1}
+                          >
+                            <i className="bi bi-dash"></i>
                           </button>
-                          <span class="fw-bold mx-2">1</span>
-                          <button class="btn btn-outline-secondary btn-sm me-3">
-                            <i class="bi bi-plus"></i>
+                          <span className="fw-bold mx-2">{quantity}</span>
+                          <button
+                            className="btn btn-outline-secondary btn-sm me-3"
+                            onClick={() => setQuantity(quantity + 1)}
+                          >
+                            <i className="bi bi-plus"></i>
                           </button>
-                          <button class="btn btn-outline-danger btn-sm">
-                            <i class="bi bi-trash"></i>
-                          </button>
+                          {/* <button className="btn btn-outline-danger btn-sm">
+                            <i className="bi bi-trash"></i>
+                          </button> */}
                         </div>
                       </div>
                     </div>
@@ -119,35 +126,46 @@ export default function Flight() {
                 </div>
               </div>
 
-              <div class="cart-summary-card card">
-                <div class="card-body">
-                  <h5 class="card-title mb-4">Order Summary</h5>
-                  <div class="d-flex justify-content-between mb-2">
-                    <span>Palawan Package (1 person)</span>
-                    <span>₱15,500</span>
+              <div className="cart-summary-card card">
+                <div className="card-body">
+                  <h5 className="card-title mb-4">Order Summary</h5>
+                  <div className="d-flex justify-content-between mb-2">
+                    <span>
+                      {flight?.origin.code}{" "}
+                      <span className="mx-2" role="img" aria-label="arrow">
+                        &#8594;
+                      </span>{" "}
+                      {flight?.destination.code}{" "}
+                      {quantity > 1
+                        ? `(${quantity} ${quantity > 1 ? "tickets" : "ticket"})`
+                        : ""}
+                    </span>
+                    <span>
+                      ₱{Math.floor(flight?.price * quantity).toFixed(2)}
+                    </span>
                   </div>
-                  <div class="d-flex justify-content-between mb-2">
-                    <span>Service Fee</span>
-                    <span>₱500</span>
-                  </div>
+
                   <hr />
-                  <div class="d-flex justify-content-between mb-4">
-                    <h5 class="fw-bold">Total</h5>
-                    <h5 class="fw-bold price-display">₱16,000</h5>
+                  <div className="d-flex justify-content-between mb-4">
+                    <h5 className="fw-bold">Total</h5>
+                    <h5 className="fw-bold price-display">
+                      ₱{Math.floor(flight?.price * quantity).toFixed(2)}
+                    </h5>
                   </div>
-                  <div class="d-grid gap-2">
-                    <a
-                      href="./checkout.html"
-                      class="btn btn-primary btn-lg rounded-pill"
+                  <div className="d-grid gap-2">
+                    <button
+                      onClick={handleCheckout}
+                      className="btn btn-theme btn-lg rounded-pill"
                     >
-                      <i class="bi bi-credit-card me-2"></i>Proceed to Checkout
-                    </a>
-                    <a
-                      href="./index.html"
-                      class="btn btn-outline-primary rounded-pill"
+                      <i className="bi bi-credit-card me-2"></i>Proceed to
+                      Checkout
+                    </button>
+                    <button
+                      className="btn btn-theme-outline rounded-pill"
+                      onClick={() => navigate(-1)}
                     >
-                      <i class="bi bi-arrow-left me-2"></i>Continue Shopping
-                    </a>
+                      <i className="bi bi-arrow-left me-2"></i>Go Back
+                    </button>
                   </div>
                 </div>
               </div>

@@ -7,10 +7,14 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Flight from "./Flight";
+import BookingCheckout from "./pages/BookingCheckout";
 
 import Layout from "./pages/Layout";
 import ManageFlights from "./pages/admin/ManageFlights";
 import ManageAirports from "./pages/admin/ManageAirports";
+import Payment from "./pages/Payment";
+import VerifyPayment from "./pages/VerifyPayment";
+import MyBookings from "./pages/MyBookings";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -78,6 +82,51 @@ function App() {
                 <Flight
                   heading="Cart"
                   description="Review your selected destination"
+                />
+              </Layout>
+            }
+          />
+
+          <Route
+            path="/payment/:id"
+            element={
+              <Layout>
+                <Payment
+                  heading="Secure Payment"
+                  description="Your information is protected with 256-bit encryption."
+                />
+              </Layout>
+            }
+          />
+
+          <Route
+            path="/payment/verify/:id"
+            element={
+              <Layout>
+                <VerifyPayment heading="Payment Status" description="" />
+              </Layout>
+            }
+          />
+
+          <Route
+            path="/my-bookings"
+            element={
+              <Layout>
+                <MyBookings
+                  heading="My Bookings"
+                  description="View and manage your bookings."
+                />
+              </Layout>
+            }
+          />
+
+          <Route
+            path="/bookings/:id"
+            element={
+              <Layout>
+                <BookingCheckout
+                  heading="Secure Checkout"
+                  description="Complete your booking in just a few steps."
                 />
               </Layout>
             }

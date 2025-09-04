@@ -1,4 +1,4 @@
-import React from "react";
+import { NavLink } from "react-router-dom";
 import { Navbar, Container, Nav } from "react-bootstrap";
 
 export default function AppNavbar() {
@@ -9,12 +9,16 @@ export default function AppNavbar() {
       data-bs-theme="light"
     >
       <Container>
-        <Navbar.Brand href="#home" className="fw-bold text-gradient">
+        <Navbar.Brand as={NavLink} to="/" className="fw-bold text-gradient">
           BookingApp
         </Navbar.Brand>
         <Nav className="justify-content-end">
-          <Nav.Link href="#home">Cart</Nav.Link>
-          <Nav.Link href="#home">Manage Bookings</Nav.Link>
+          {/* <Nav.Link as={NavLink} to="/cart">
+            Cart
+          </Nav.Link> */}
+          <Nav.Link as={NavLink} to="/manage-bookings">
+            Manage Bookings
+          </Nav.Link>
         </Nav>
       </Container>
     </Navbar>

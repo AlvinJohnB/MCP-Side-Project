@@ -9,5 +9,6 @@ router.patch("/:id", verify, verifyAdmin, flightController.updateFlight);
 router.delete("/:id", verify, verifyAdmin, flightController.deleteFlight);
 
 router.post("/searchFlight", verify, flightController.searchFlight);
+router.get("/searchFlightById/:id", verify, flightController.searchFlightById);
 
 module.exports = router;

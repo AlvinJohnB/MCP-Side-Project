@@ -136,6 +136,10 @@
   background-color: rgb(0, 41, 95) !important;
 }
 
+.bg-theme {
+  background-color: rgb(0, 41, 95) !important;
+  color: white !important;
+}
 .manage-flight-body {
   border-radius: 0px 0px 10px 10px;
   background-color: rgba(255, 255, 255, 0.8) !important;
@@ -149,4 +153,23 @@
 .btn-theme:hover {
   background-color: rgb(16, 65, 129) !important;
   color: white !important;
+}
+
+.btn-theme-outline {
+  background-color: rgb(255, 255, 255) !important;
+  border: 2px solid rgba(0, 41, 95, 1) !important;
+  color: rgba(0, 41, 95, 1) !important;
+}
+
+.btn-theme-outline:hover {
+  background-color: rgb(16, 65, 129) !important;
+  border: 2px solid rgb(255, 255, 255) !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+.digital-wallet-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }

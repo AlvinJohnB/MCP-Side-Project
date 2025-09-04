@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes");
 const airportRoutes = require("./routes/airportRoutes");
 const flightRoutes = require("./routes/flightRoutes");
+const bookingRoutes = require("./routes/bookingRoutes");
 
 const { errorHandler } = require("./middlewares/errorHandler");
 
@@ -27,6 +28,7 @@ mongoose
 app.use("/users", userRoutes);
 app.use("/airports", airportRoutes);
 app.use("/flights", flightRoutes);
+app.use("/bookings", bookingRoutes);
 
 // Error Handling Middleware
 app.use(errorHandler);

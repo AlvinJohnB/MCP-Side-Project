@@ -75,3 +75,17 @@ module.exports.searchFlight = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.searchFlightById = async (req, res, next) => {
+  try {
+    const flight = await Flight.findById(req.params.id).populate(
+      "origin destination"
+    );
+    if (!flight) {
+      return res.status(404).json({ message: "Flight not found" });
+    }
+    res.status(200).json(flight);
+  } catch (error) {
+    next(error);
+  }
+};

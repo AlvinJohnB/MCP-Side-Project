@@ -22,6 +22,72 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  bookings: [
+    {
+      flightId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Flight",
+      },
+      quantity: {
+        type: Number,
+        required: [true, "Quantity is required"],
+        min: [1, "Quantity must be at least 1"],
+      },
+      totalPrice: {
+        type: Number,
+        required: [true, "Total Price is required"],
+      },
+      travellers: [
+        {
+          firstName: {
+            type: String,
+          },
+          lastName: {
+            type: String,
+          },
+          email: {
+            type: String,
+          },
+          phone: {
+            type: String,
+          },
+          address: {
+            type: String,
+          },
+          city: {
+            type: String,
+          },
+          province: {
+            type: String,
+          },
+          zipCode: {
+            type: String,
+          },
+        },
+      ],
+      additionalInformation: {
+        type: String,
+      },
+      bookingDate: {
+        type: Date,
+        default: Date.now,
+      },
+      paymentInformation: {
+        paymentIntent: {
+          type: String,
+        },
+        clientKey: {
+          type: String,
+        },
+        paymentMethod: {
+          type: String,
+        },
+        paymentStatus: {
+          type: String,
+        },
+      },
+    },
+  ],
 });
 
 const User = mongoose.model("User", userSchema);
